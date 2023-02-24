@@ -4,32 +4,67 @@
 @{
     ViewData["Title"] = "View Quadrants";
 }
+<div class="container">
+    <div class="row">
+        <h1>Stephen Covey's Time Management Matrix</h1>
+    </div>
+    <div class="row">
+        <div class="col">
 
-<h1>Sup</h1>
-
-<h2>Quad 1</h2>
-@foreach (Tasks t in ViewBag.quad1)
-{
-    <h3>@t.TaskName</h3>
-}
-
-<h2>Quad 2</h2>
-@foreach (Tasks t in ViewBag.quad2)
-{
-    <h3>@t.TaskName</h3>
-}
-
-<h2>Quad 3</h2>
-@foreach (Tasks t in ViewBag.quad3)
-{
-    <h3>@t.TaskName</h3>
-}
-
-<h2>Quad 4</h2>
-@foreach (Tasks t in ViewBag.quad4)
-{
-    <h3>@t.TaskName</h3>
-}
-
+        </div>
+        <div class="col">
+            <h2>Urgent</h2>
+        </div>
+        <div class="col">
+            <h2>Not Urgent</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h2>Important</h2>
+        </div>
+        <div class="col">
+            <h4>Quad 1</h4>
+            <ul>
+                @foreach (Tasks t in ViewBag.quad1)
+                {
+                    <li>@t.TaskName</li>
+                }
+            </ul>
+        </div>
+        <div class="col">
+            <h4>Quad 2</h4>
+            <ul>
+                @foreach (Tasks t in ViewBag.quad2)
+                {
+                    <li>@t.TaskName</li>
+                }
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <h2>Not Important</h2>
+        </div>
+        <div class="col">
+            <h4>Quad 3</h4>
+            <ul>
+                @foreach (Tasks t in ViewBag.quad3)
+                {
+                    <li>@t.TaskName</li>
+                }
+            </ul>
+        </div>
+        <div class="col">
+            <h4>Quad 4</h4>
+            <ul>
+                @foreach (Tasks t in ViewBag.quad4)
+                {
+                    <li>@t.TaskName</li>
+                }
+            </ul>
+        </div>
+    </div>
+</div>
 
 
