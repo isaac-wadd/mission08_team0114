@@ -27,14 +27,14 @@ namespace habitsApp.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        // ASSUMPTION: 'TaskCtxt' will be the name of the class as created in the 'habitsApp.Models' namespace
+// ASSUMPTION: 'TaskCtxt' will be the name of the class as created in the 'habitsApp.Models' namespace
         private TaskCtxt _taskCtxt { get; set; }
 
         public HomeController(ILogger<HomeController> logger, TaskCtxt taskCtxt)
         {
             _logger = logger;
 
-            // the private variable as it will be initialized in the constructor for 'HomeController'
+// the private variable as it will be initialized in the constructor for 'HomeController'
             _taskCtxt = taskCtxt;
         }
 
@@ -53,20 +53,20 @@ namespace habitsApp.Controllers
             return View(tasks);
         }
 
-        // } –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+// } –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 
-        /*
-        NOTES ON 'ViewBag':
-            - the 'pageTitle' variable can be used to set some text in the view (not necessary, so let me know)
-            - the 'formAction' should be used in the view's 'form' element's 'asp-action' attribute;
-                - this facilitates various processes since we can:
-                    1. change which action is triggered dynamically and therefore
-                    2. use the same view for both adding and updating records
-                - this can be done by referencing the object (and its attributes) in the cshtml file,
-                  e.g. '@ViewBag.pageTitle'
-        */
-        // C { –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
-        // ASSUMPTION: 'Task' view will exist for both adding and editing (updating) records
+/*
+NOTES ON 'ViewBag':
+    - the 'pageTitle' variable can be used to set some text in the view (not necessary, so let me know)
+    - the 'formAction' should be used in the view's 'form' element's 'asp-action' attribute;
+        - this facilitates various processes since we can:
+            1. change which action is triggered dynamically and therefore
+            2. use the same view for both adding and updating records
+        - this can be done by referencing the object (and its attributes) in the cshtml file,
+            e.g. '@ViewBag.pageTitle'
+*/
+// C { –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+// ASSUMPTION: 'Task' view will exist for both adding and editing (updating) records
         [HttpGet]
         public IActionResult Add()
         {
@@ -115,9 +115,9 @@ namespace habitsApp.Controllers
                 return View(task);
             }
         }
-        // } –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+// } –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 
-        // D { –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+// D { –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
         [HttpGet]
         public IActionResult Delete(int taskID) {
             var task = _taskCtxt.tasks.Single(t => t.taskID == taskID);
@@ -130,7 +130,7 @@ namespace habitsApp.Controllers
             _taskCtxt.SaveChanges();
             return View("Index");
         }
-        // } –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+// } –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
