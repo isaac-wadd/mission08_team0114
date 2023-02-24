@@ -3,6 +3,12 @@
 © 2023 IS Junor Core Group 01-14
 ASP.NET controller for habitsApp
 Author: Isaac Waddell
+
+NOTE: labels shown for each of the Create, Read, Update, and Delete functionalities, e.g.
+"
+C { ––––––––––––––––––––
+} ––––––––––––––––––––––
+"
 */
 
 using System;
@@ -29,7 +35,14 @@ namespace habitsApp.Controllers {
             _taskCtxt = taskCtxt;
         }
 
-        public IActionResult Index() { return View(); }
+// R { –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+
+        public IActionResult Index() {
+            var tasks = _tastkCtxt.tasks.ToList();
+            return View(tasks);
+        }
+
+// } –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 
 /*
 NOTES ON 'ViewBag':
@@ -58,16 +71,10 @@ NOTES ON 'ViewBag':
             if (ModelState.IsValid) {
                 _taskCtxt.Add(task);
                 _taskCtxt.SaveChanges();
-                return View("TaskGrid");
+                return View("Index");
             }
             else { return View("Task", task); }
         }
-// } –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
-
-// R { –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
-
-// ASSUMPTION: 'TaskGrid' view will exist, rather than just having it on the home (index) page
-        public IActionResult TaskGrid() { return View(); }
 // } –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 
 // U { –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
@@ -85,7 +92,7 @@ NOTES ON 'ViewBag':
             if (ModelState.IsValid) {
                 _taskCtxt.Update(task);
                 _taskCtxt.SaveChanges();
-                return View("TaskGrid");
+                return View("Index");
             }
             else {
                 ViewBag.categories = _taskCtxt.categories.ToList();
@@ -105,7 +112,7 @@ NOTES ON 'ViewBag':
         public IActionResult Delete(Tasks task) {
             _taskCtxt.Remove(task);
             _taskCtxt.SaveChanges();
-            return View("TaskGrid");
+            return View("Index");
         }
 // } –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
