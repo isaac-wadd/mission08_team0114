@@ -6,61 +6,61 @@
 }
 <div class="container">
     <div class="row">
-        <h1>Stephen Covey's Time Management Matrix</h1>
+        <h2>Stephen Covey's Time Management Matrix</h2>
     </div>
     <div class="row">
-        <div class="col">
+        <div class="col-2">
 
         </div>
-        <div class="col">
-            <h2>Urgent</h2>
+        <div class="col-5">
+            <h4>Urgent</h4>
         </div>
-        <div class="col">
-            <h2>Not Urgent</h2>
+        <div class="col-5">
+            <h4>Not Urgent</h4>
         </div>
     </div>
     <div class="row">
-        <div class="col">
-            <h2>Important</h2>
+        <div class="col-2">
+            <h4>Important</h4>
         </div>
-        <div class="col">
-            <h4>Quad 1</h4>
+        <div class="col-5">
+            <h5>Quad 1</h5>
             <ul>
                 @foreach (Tasks t in ViewBag.quad1)
                 {
-                    <li>@t.TaskName</li>
+                    <li><a asp-controller="Home" asp-action="Edit" asp-route-id="@t.taskID">Edit</a> @t.TaskName <a asp-controller="Home" asp-action="Delete" asp-route-id="@t.taskID">Delete</a></li>
                 }
             </ul>
         </div>
-        <div class="col">
-            <h4>Quad 2</h4>
+        <div class="col-5">
+            <h5>Quad 2</h5>
             <ul>
                 @foreach (Tasks t in ViewBag.quad2)
                 {
-                    <li>@t.TaskName</li>
+                    <li><a asp-controller="Home" asp-action="Edit" asp-route-id="@t.taskID">Edit</a> @t.TaskName <a asp-controller="Home" asp-action="Delete" asp-route-id="@t.taskID">Delete</a></li>
                 }
             </ul>
         </div>
     </div>
     <div class="row">
-        <div class="col">
-            <h2>Not Important</h2>
+        <div class="col-2">
+            <h4>Not Important</h4>
         </div>
-        <div class="col">
-            <h4>Quad 3</h4>
+        <div class="col-5">
+            <h5>Quad 3</h5>
             <ul>
                 @foreach (Tasks t in ViewBag.quad3)
                 {
-                    <li>@t.TaskName</li>
+                    <li><a asp-controller="Home" asp-action="Edit" asp-route-id="@t.taskID">Edit</a> @t.TaskName <a asp-controller="Home" asp-action="Delete" asp-route-id="@t.taskID">Delete</a></li>
                 }
             </ul>
         </div>
-        <div class="col">
-            <h4>Quad 4</h4>
+        <div class="col-5">
+            <h5>Quad 4</h5>
             <ul>
                 @foreach (Tasks t in ViewBag.quad4)
                 {
-                    <li>@t.TaskName</li>
+                    <li><a asp-controller="Home" asp-action="Edit" asp-route-id="@t.taskID">Edit</a> @t.TaskName <a asp-controller="Home" asp-action="Delete" asp-route-id="@t.taskID">Delete</a></li>
                 }
             </ul>
         </div>
