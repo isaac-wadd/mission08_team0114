@@ -1,4 +1,4 @@
-﻿
+
 /*
 © 2023 IS Junor Core Group 01-14
 ASP.NET controller for habitsApp
@@ -38,7 +38,14 @@ namespace habitsApp.Controllers
             _taskCtxt = taskCtxt;
         }
 
-        // R { –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+// R { –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+
+        public IActionResult Index() {
+            var tasks = _tastkCtxt.tasks.ToList();
+            return View(tasks);
+        }
+
+// } –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 
         public IActionResult Index()
         {
@@ -72,19 +79,19 @@ namespace habitsApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult Add(Tasks task)
-        {
-            if (ModelState.IsValid)
-            {
+        public IActionResult Add(Tasks task) {
+            if (ModelState.IsValid) {
                 _taskCtxt.Add(task);
                 _taskCtxt.SaveChanges();
                 return View("Index");
             }
             else { return View("Task", task); }
         }
-        // } –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 
-        // U { –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+// } –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+
+// U { –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
+
         [HttpGet]
         public IActionResult Edit(int taskID)
         {
@@ -96,10 +103,8 @@ namespace habitsApp.Controllers
         }
 
         [HttpPost]
-        public IActionResult Edit(Tasks task)
-        {
-            if (ModelState.IsValid)
-            {
+        public IActionResult Edit(Tasks task) {
+            if (ModelState.IsValid) {
                 _taskCtxt.Update(task);
                 _taskCtxt.SaveChanges();
                 return View("Index");
@@ -114,15 +119,13 @@ namespace habitsApp.Controllers
 
         // D { –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
         [HttpGet]
-        public IActionResult Delete(int taskID)
-        {
+        public IActionResult Delete(int taskID) {
             var task = _taskCtxt.tasks.Single(t => t.taskID == taskID);
             return View(task);
         }
 
         [HttpPost]
-        public IActionResult Delete(Tasks task)
-        {
+        public IActionResult Delete(Tasks task) {
             _taskCtxt.Remove(task);
             _taskCtxt.SaveChanges();
             return View("Index");
