@@ -47,14 +47,6 @@ namespace habitsApp.Controllers
 
 // } –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 
-        public IActionResult Index()
-        {
-            var tasks = _tastkCtxt.tasks.ToList();
-            return View(tasks);
-        }
-
-// } –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
-
 /*
 NOTES ON 'ViewBag':
     - the 'pageTitle' variable can be used to set some text in the view (not necessary, so let me know)
