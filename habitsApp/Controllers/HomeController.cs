@@ -54,7 +54,7 @@ NOTES ON 'ViewBag':
         }
 
         [HttpPost]
-        public IActionResult Add(Task task) {
+        public IActionResult Add(Tasks task) {
             if (ModelState.IsValid) {
                 _taskCtxt.Add(task);
                 _taskCtxt.SaveChanges();
@@ -81,7 +81,7 @@ NOTES ON 'ViewBag':
         }
 
         [HttpPost]
-        public IActionResult Edit(Task task) {
+        public IActionResult Edit(Tasks task) {
             if (ModelState.IsValid) {
                 _taskCtxt.Update(task);
                 _taskCtxt.SaveChanges();
@@ -97,12 +97,12 @@ NOTES ON 'ViewBag':
 // D { –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
         [HttpGet]
         public IActionResult Delete(int taskID) {
-            var task = _taskCtxt.tasks.Single(t = t.taskID = taskID);
+            var task = _taskCtxt.tasks.Single(t => t.taskID == taskID);
             return View(task);
         }
 
         [HttpPost]
-        public IActionResult Delete(Task task) {
+        public IActionResult Delete(Tasks task) {
             _taskCtxt.Remove(task);
             _taskCtxt.SaveChanges();
             return View("TaskGrid");
