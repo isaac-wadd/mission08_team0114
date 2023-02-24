@@ -75,7 +75,7 @@ namespace habitsApp.Controllers
             // 'formAction' here will be set to 'add' so that the 'Add' post action (see below) is triggered
             // this is an example of what's described above in the 'NOTES ON ViewBag'
             ViewBag.formAction = "Add";
-            return View();
+            return View("Task");
         }
 
         [HttpPost]
@@ -99,7 +99,7 @@ namespace habitsApp.Controllers
             ViewBag.categories = _taskCtxt.categories.ToList();
             ViewBag.pageTitle = "Edit";
             ViewBag.formAction = "Edit";
-            return View("Add", task);
+            return View("Task", task);
         }
 
         [HttpPost]
