@@ -1,0 +1,35 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "View Quadrants";
+}
+
+<h1>Sup</h1>
+
+<h2>Quad 1</h2>
+@foreach (Tasks t in ViewBag.quad1)
+{
+    <h3>@t.TaskName</h3>
+}
+
+<h2>Quad 2</h2>
+@foreach (Tasks t in ViewBag.quad2)
+{
+    <h3>@t.TaskName</h3>
+}
+
+<h2>Quad 3</h2>
+@foreach (Tasks t in ViewBag.quad3)
+{
+    <h3>@t.TaskName</h3>
+}
+
+<h2>Quad 4</h2>
+@foreach (Tasks t in ViewBag.quad4)
+{
+    <h3>@t.TaskName</h3>
+}
+
+
+
