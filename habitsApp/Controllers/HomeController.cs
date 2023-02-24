@@ -41,6 +41,10 @@ namespace habitsApp.Controllers
 // R { –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 
         public IActionResult Index() {
+            ViewBag.quad1 = _taskCtxt.tasks.Where(t => t.Quadrant == 1);
+            ViewBag.quad2 = _taskCtxt.tasks.Where(t => t.Quadrant == 2);
+            ViewBag.quad3 = _taskCtxt.tasks.Where(t => t.Quadrant == 3);
+            ViewBag.quad4 = _taskCtxt.tasks.Where(t => t.Quadrant == 4);
             var tasks = _taskCtxt.tasks.ToList();
             return View(tasks);
         }
