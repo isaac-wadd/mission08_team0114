@@ -1,0 +1,51 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Add Task";
+}
+
+@model habitsApp.Models.ApplicationResponse
+    Task (Required)
+    • Due Date
+    • Quadrant (Required)
+    • Category (Dropdown containing options: Home, School, Work, Church)
+    • Completed (True/False)
+
+
+    <div>
+        <form method="post">
+
+            <div asp-validation-summary="All"></div>
+
+            <label asp-for="Task">Task</label>
+            <input asp-for="Task" /><br />
+
+            <label asp-for="CategoryID">Category</label>
+            <select asp-for="CategoryID">
+                <option value="">Select a Category</option>
+                @foreach (Category c in ViewBag.Category)
+                {
+                    <option value="@c.CategoryID">@c.CategoryDesc</option>
+                }
+            </select><br />
+
+            <label asp-for="DueDate">Due Date</label>
+            <input asp-for="DueDate" /><br />
+
+            <label asp-for="Quadrant">Quadrant</label>
+            <input asp-for="Quadrant" /><br />
+
+
+
+            <label asp-for="Completed">Completed</label>
+            <select asp-for="Completed">
+                <option value="true">Yes</option>
+                <option value="false">No</option>
+            </select><br />
+
+
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
