@@ -38,7 +38,7 @@ namespace habitsApp.Controllers {
 // R { –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 
         public IActionResult Index() {
-            var tasks = _tastkCtxt.tasks.ToList();
+            var tasks = _taskCtxt.tasks.ToList();
             return View(tasks);
         }
 
@@ -63,7 +63,7 @@ NOTES ON 'ViewBag':
 // 'formAction' here will be set to 'add' so that the 'Add' post action (see below) is triggered
 // this is an example of what's described above in the 'NOTES ON ViewBag'
             ViewBag.formAction = "Add";
-            return View("Task");
+            return View();
         }
 
         [HttpPost]
@@ -73,7 +73,7 @@ NOTES ON 'ViewBag':
                 _taskCtxt.SaveChanges();
                 return View("Index");
             }
-            else { return View("Task", task); }
+            else { return View(task); }
         }
 // } –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 
@@ -84,7 +84,7 @@ NOTES ON 'ViewBag':
             ViewBag.categories = _taskCtxt.categories.ToList();
             ViewBag.pageTitle = "Edit";
             ViewBag.formAction = "Edit";
-            return View("Task", task);
+            return View("Add", task);
         }
 
         [HttpPost]
