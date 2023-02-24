@@ -5,7 +5,7 @@
     ViewData["Title"] = "Add Task";
 }
 
-@model habitsApp.Models.ApplicationResponse
+@model habitsApp.Models.Tasks
     Task (Required)
     • Due Date
     • Quadrant (Required)
@@ -18,15 +18,15 @@
 
             <div asp-validation-summary="All"></div>
 
-            <label asp-for="Task">Task</label>
-            <input asp-for="Task" /><br />
+            <label asp-for="TaskName">Task</label>
+            <input asp-for="TaskName" /><br />
 
-            <label asp-for="CategoryID">Category</label>
-            <select asp-for="CategoryID">
+            <label asp-for="CategoryId">Category</label>
+            <select asp-for="CategoryId">
                 <option value="">Select a Category</option>
                 @foreach (Category c in ViewBag.Category)
                 {
-                    <option value="@c.CategoryID">@c.CategoryDesc</option>
+                    <option value="@c.CategoryId">@c.CategoryDesc</option>
                 }
             </select><br />
 
