@@ -64,8 +64,8 @@ NOTES ON 'ViewBag':
         {
             ViewBag.categories = _taskCtxt.categories.ToList();
             ViewBag.pageTitle = "Add";
-            // 'formAction' here will be set to 'add' so that the 'Add' post action (see below) is triggered
-            // this is an example of what's described above in the 'NOTES ON ViewBag'
+// 'formAction' here will be set to 'add' so that the 'Add' post action (see below) is triggered
+// this is an example of what's described above in the 'NOTES ON ViewBag'
             ViewBag.formAction = "Add";
             return View("Task");
         }
