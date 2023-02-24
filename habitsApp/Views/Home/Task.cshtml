@@ -6,15 +6,9 @@
 }
 
 @model habitsApp.Models.Tasks
-    Task (Required)
-    • Due Date
-    • Quadrant (Required)
-    • Category (Dropdown containing options: Home, School, Work, Church)
-    • Completed (True/False)
-
 
     <div>
-        <form method="post">
+        <form method="post" asp-action="@ViewBag.formAction">
 
             <div asp-validation-summary="All"></div>
 
@@ -24,7 +18,7 @@
             <label asp-for="CategoryId">Category</label>
             <select asp-for="CategoryId">
                 <option value="">Select a Category</option>
-                @foreach (Category c in ViewBag.Category)
+                @foreach (Category c in ViewBag.categories)
                 {
                     <option value="@c.CategoryId">@c.CategoryDesc</option>
                 }
