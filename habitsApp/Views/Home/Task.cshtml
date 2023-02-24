@@ -6,15 +6,9 @@
 }
 
 @model habitsApp.Models.Tasks
-    @*Task (Required)
-    • Due Date
-    • Quadrant (Required)
-    • Category (Dropdown containing options: Home, School, Work, Church)
-    • Completed (True/False)
-*@
 
     <div>
-        <form method="post">
+        <form method="post" asp-action="@ViewBag.formAction">
 
             <div asp-validation-summary="All"></div>
 
