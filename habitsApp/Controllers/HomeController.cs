@@ -30,8 +30,7 @@ namespace habitsApp.Controllers
 // ASSUMPTION: 'TaskCtxt' will be the name of the class as created in the 'habitsApp.Models' namespace
         private TaskCtxt _taskCtxt { get; set; }
 
-        public HomeController(ILogger<HomeController> logger, TaskCtxt taskCtxt)
-        {
+        public HomeController(ILogger<HomeController> logger, TaskCtxt taskCtxt) {
             _logger = logger;
 
 // the private variable as it will be initialized in the constructor for 'HomeController'
@@ -41,16 +40,12 @@ namespace habitsApp.Controllers
 // R { –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 
         public IActionResult Index() {
-            var tasks = _taskCtxt.tasks.ToList();
-            return View(tasks);
-        }
-
-// } –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
-
-        public IActionResult Index()
-        {
-            var tasks = _tastkCtxt.tasks.ToList();
-            return View(tasks);
+            var allTasks = _taskCtxt.tasks.Where(t => t.Completed == false).ToList();
+            ViewBag.quad1 = allTasks.Where(t => t.Quadrant == 1).ToList();
+            ViewBag.quad2 = allTasks.Where(t => t.Quadrant == 2).ToList();
+            ViewBag.quad3 = allTasks.Where(t => t.Quadrant == 3).ToList();
+            ViewBag.quad4 = allTasks.Where(t => t.Quadrant == 4).ToList();
+            return View();
         }
 
 // } –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
@@ -68,12 +63,12 @@ NOTES ON 'ViewBag':
 // C { –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 // ASSUMPTION: 'Task' view will exist for both adding and editing (updating) records
         [HttpGet]
-        public IActionResult Add()
-        {
+        public IActionResult Add() {
             ViewBag.categories = _taskCtxt.categories.ToList();
+            ViewBag.isEdit = false;
             ViewBag.pageTitle = "Add";
-            // 'formAction' here will be set to 'add' so that the 'Add' post action (see below) is triggered
-            // this is an example of what's described above in the 'NOTES ON ViewBag'
+// 'formAction' here will be set to 'add' so that the 'Add' post action (see below) is triggered
+// this is an example of what's described above in the 'NOTES ON ViewBag'
             ViewBag.formAction = "Add";
             return View("Task");
         }
@@ -83,7 +78,7 @@ NOTES ON 'ViewBag':
             if (ModelState.IsValid) {
                 _taskCtxt.Add(task);
                 _taskCtxt.SaveChanges();
-                return View("Index");
+                return RedirectToAction("Index");
             }
             else { return View(task); }
         }
@@ -93,12 +88,12 @@ NOTES ON 'ViewBag':
 // U { –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
 
         [HttpGet]
-        public IActionResult Edit(int taskID)
-        {
-            var task = _taskCtxt.tasks.Single(t => t.taskID == taskID);
+        public IActionResult Edit(int taskID) {
             ViewBag.categories = _taskCtxt.categories.ToList();
+            ViewBag.isEdit = true;
             ViewBag.pageTitle = "Edit";
             ViewBag.formAction = "Edit";
+            var task = _taskCtxt.tasks.Single(t => t.taskID == taskID);
             return View("Task", task);
         }
 
@@ -107,10 +102,9 @@ NOTES ON 'ViewBag':
             if (ModelState.IsValid) {
                 _taskCtxt.Update(task);
                 _taskCtxt.SaveChanges();
-                return View("Index");
+                return RedirectToAction("Index");
             }
-            else
-            {
+            else {
                 ViewBag.categories = _taskCtxt.categories.ToList();
                 return View(task);
             }
@@ -128,12 +122,11 @@ NOTES ON 'ViewBag':
         public IActionResult Delete(Tasks task) {
             _taskCtxt.Remove(task);
             _taskCtxt.SaveChanges();
-            return View("Index");
+            return RedirectToAction("Index");
         }
 // } –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
+        public IActionResult Error() {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
     }
