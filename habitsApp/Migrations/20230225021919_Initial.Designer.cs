@@ -9,7 +9,7 @@ using habitsApp.Models;
 namespace habitsApp.Migrations
 {
     [DbContext(typeof(TaskCtxt))]
-    [Migration("20230223184127_Initial")]
+    [Migration("20230225021919_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -66,7 +66,7 @@ namespace habitsApp.Migrations
                     b.Property<bool>("Completed")
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("DueDate")
+                    b.Property<DateTime?>("DueDate")
                         .HasColumnType("TEXT");
 
                     b.Property<int>("Quadrant")

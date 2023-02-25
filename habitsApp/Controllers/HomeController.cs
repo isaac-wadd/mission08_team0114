@@ -80,7 +80,12 @@ NOTES ON 'ViewBag':
                 _taskCtxt.SaveChanges();
                 return RedirectToAction("Index");
             }
-            else { return View("Task", task); }
+            else {
+                ViewBag.formAction = "Add";
+                ViewBag.categories = _taskCtxt.categories.ToList();
+                ViewBag.isEdit = false;
+                return View("Task", task); 
+            }
         }
 
 // } –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
@@ -105,6 +110,8 @@ NOTES ON 'ViewBag':
                 return RedirectToAction("Index");
             }
             else {
+                ViewBag.formAction = "Edit";
+                ViewBag.isEdit = true;
                 ViewBag.categories = _taskCtxt.categories.ToList();
                 return View("Task", task);
             }
