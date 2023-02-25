@@ -1,0 +1,22 @@
+
+@{
+    ViewData["Title"] = "Delete Confirmation";
+}
+
+@model habitsApp.Models.Tasks
+
+<div class="text-center">
+    <h4>Are you SURE you want to delete '@Model.TaskName' from the database?</h4>
+    <br>
+    <h5>(this action cannot be undone)</h5>
+    <form method="post" asp-controller="Home" asp-action="Delete" class="text-center">
+        <br>
+        <button class="btn btn-secondary" type="submit">DELETE</button>
+        <br>
+        <input type="hidden" asp-for="taskID">
+    </form>
+    <br>
+    <a asp-controller="Home" asp-action="Index">
+        <button class="btn btn-primary">CANCEL</button>
+    </a>
+</div>
