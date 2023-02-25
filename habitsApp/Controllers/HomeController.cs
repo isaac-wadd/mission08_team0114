@@ -80,7 +80,7 @@ NOTES ON 'ViewBag':
                 _taskCtxt.SaveChanges();
                 return RedirectToAction("Index");
             }
-            else { return View(task); }
+            else { return View("Task", task); }
         }
 
 // } –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
@@ -106,7 +106,7 @@ NOTES ON 'ViewBag':
             }
             else {
                 ViewBag.categories = _taskCtxt.categories.ToList();
-                return View(task);
+                return View("Task", task);
             }
         }
 // } –––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––––
