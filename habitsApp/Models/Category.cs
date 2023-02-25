@@ -8,6 +8,7 @@ namespace habitsApp.Models
 {
     public class Category
     {
+        //Requiring a primary ID and giving an optional Description
         [Required]
         [Key]
         public int CategoryId { get; set; }

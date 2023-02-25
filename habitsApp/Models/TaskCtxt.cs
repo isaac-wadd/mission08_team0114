@@ -6,19 +6,23 @@ using System.Threading.Tasks;
 
 namespace habitsApp.Models
 {
+    //Inherit from DbContext
     public class TaskCtxt : DbContext
     {
+        //Constructor with super call
         public TaskCtxt(DbContextOptions<TaskCtxt> options) : base(options)
         {
 
         }
 
+        //Make two DBsets
         public DbSet<Tasks> tasks { get; set; }
         public DbSet<Category> categories { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder mb)
         {
+            //Enter default categories
             mb.Entity<Category>().HasData(
                 new Category
                 {
